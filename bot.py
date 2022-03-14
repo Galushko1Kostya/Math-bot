@@ -1,7 +1,7 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from pprint import pprint
 
-TOKEN = ''
+TOKEN = '5245584590:AAGv6oc2i2A7yu7Kmmj-JBlM0DMGn_5Hwx0'
 updater = Updater(TOKEN, use_context=True)
 dispatcher = updater.dispatcher
 print('Bot started. Press Ctrl+Z to exit')
