@@ -14,31 +14,25 @@ def help(update, context):
     chat = update.effective_chat
     context.bot.send_message(chat_id=chat.id, text="Hello! List of commands: start, help, calc")
 
-def math(a, b, sing):
-    if sing == "+":
-        print(a + b)
-        result = a + b
-    elif sing == "-":
-        print(a - b)
-        result = a - b
-    elif sing == "*":
-        print(a * b)
-        result = a * b
-    elif sing == "/":
-        print(a / b)
-        result = a / b
-    elif sing == "**":
-        print(a ** b)
-        result = a ** b
-    else:
-        return "error"
-    return result
+def calc(a, b, s):
+    global c
+    if s == "+":
+        c = a + b
+    elif s == "-":
+        c = a - b
+    elif s == "/":
+        c = a / b
+    elif s == "*":
+        c = a * b
+    elif s == "**":
+        c = a ** b
+    return c
          
 def float(update, context):
     chat = update.effective_chat
     list = update.message.text
     try:
-        b, c, d = list.split()
+        b, x, d = list.split()
     except ValueError:
         context.bot.send_message(chat_id=chat.id, text="invalid value")
         return
@@ -50,11 +44,12 @@ def float(update, context):
         d_float = float(d)
     else:
         context.bot.send_message(chat_id=chat.id, text="invalid value")
-        g = math(b_float, d_float, c)
+        g = calc(b_float, d_float, x)
         context.bot.send_message(chat_id=chat.id, text=g)
+        context.bot.send_message(chat_id=chat.id, text=c)
       
 dispatcher.add_handler(CommandHandler('start', start))
 dispatcher.add_handler(CommandHandler('help', help))
-dispatcher.add_handler(CommandHandler('calc', math))
+dispatcher.add_handler(MessageHandler(Filters.all, calc))
 updater.start_polling()
 updater.idle()
