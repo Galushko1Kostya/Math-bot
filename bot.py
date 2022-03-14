@@ -34,7 +34,7 @@ def math(a, b, sing):
         return "error"
     return result
          
-def ma(update, context):
+def float(update, context):
     chat = update.effective_chat
     list = update.message.text
     try:
