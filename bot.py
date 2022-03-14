@@ -32,20 +32,20 @@ def float(update, context):
     chat = update.effective_chat
     list = update.message.text
     try:
-        b, x, d = list.split()
+        y, d, x = list.split()
     except ValueError:
         context.bot.send_message(chat_id=chat.id, text="invalid value")
         return
     if b.isdigit():
-        b_float = float(b)
+        y_float = float(y)
     else:
         context.bot.send_message(chat_id=chat.id, text="invalid value")
     if d.isdigit():
-        d_float = float(d)
+        x_float = float(x)
     else:
         context.bot.send_message(chat_id=chat.id, text="invalid value")
-        g = calc(b_float, d_float, x)
-        context.bot.send_message(chat_id=chat.id, text=g)
+        f = calc(y_float, x_float, d)
+        context.bot.send_message(chat_id=chat.id, text=f)
         context.bot.send_message(chat_id=chat.id, text=c)
       
 dispatcher.add_handler(CommandHandler('start', start))
