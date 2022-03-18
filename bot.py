@@ -21,14 +21,17 @@ def calc(a, b, s):
     elif s == "-":
         c = a - b
     elif s == "/":
-        c = a / b
+        if b!= 0:
+            c = a / b
+        else:
+            c = 'Error'
     elif s == "*":
         c = a * b
     elif s == "**":
-        c = a ** b
+        c = a ** b    
     return c
          
-def float(update, context):
+def check_func(update, context):
     chat = update.effective_chat
     list = update.message.text
     try:
@@ -36,15 +39,15 @@ def float(update, context):
     except ValueError:
         context.bot.send_message(chat_id=chat.id, text="invalid value")
         return
-    if b.isdigit():
-        y_float = float(y)
+    if not y.isdigit():
+        y_int = int(y)
     else:
         context.bot.send_message(chat_id=chat.id, text="invalid value")
-    if d.isdigit():
-        x_float = float(x)
+    if not d.isdigit():
+        x_int = int(x)
     else:
         context.bot.send_message(chat_id=chat.id, text="invalid value")
-        f = calc(y_float, x_float, d)
+        f = calc(y_int, x_int, d)
         context.bot.send_message(chat_id=chat.id, text=f)
         context.bot.send_message(chat_id=chat.id, text=c)
       
